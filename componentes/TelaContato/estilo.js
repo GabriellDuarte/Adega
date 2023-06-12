@@ -1,28 +1,29 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 const estilos = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    card: {
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderRadius: 10,
+        marginLeft: 50,
+        marginRight: 50,
+        marginTop: 20,
+        marginBottom: 5,
+        padding: 15,
+        alignItems: 'center',
     },
-    familia_icones:{
-      borderRadius: 5,
-      width: '90%',
-      marginBottom: 15,
-      padding: 10,
-      flexDirection: 'row',
-      alignItems: 'center'
+    textoTtilo: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        margin: 15,  
     },
-    familia_titulo:{
-      fontSize: 30,
-      borderStyle: 'solid',
-      borderColor: '#222',
+    texto: {
+        fontWeight: 'bold',
+        fontSize: 20,
     },
-    espaco_icones:{
-      margin: 5
-    }
-  });
+    texto2: {
+        fontSize: 15,
+    },
+});
 
 export default estilos;
