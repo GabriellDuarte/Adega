@@ -1,68 +1,84 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import * as React from 'react';
+import { Text, View, Button } from 'react-native';
+import { NavigationContainer, useRoute  } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo, FontAwesome5, AntDesign  } from '@expo/vector-icons';
 
-import TelaInicial from './componentes/TelaInicial/index';
-import TelaCatalogo from './componentes/TelaCatalogo/index';
-import TelaContato from "./componentes/TelaContato/index";
+import TelaInicial from './componentes/TelaInicial';
+import TelaCatalogo from './componentes/TelaCatalogo';
+import Detalhes from './componentes/Detalhes';
+import TelaContato from './componentes/TelaContato';
 
-const Abas = createBottomTabNavigator();
 
-export default function App () {
-  return (
-    <NavigationContainer >
-      <Abas.Navigator screenOptions={{
-        headerStyle:{
-          backgroundColor: '#400303'
-        },
-        headerTitleStyle: {
-          color: '#fff',
-          fontWeight: 'bold'
-        },
-        headerTitleAlign: 'center',
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
-        tabBarStyle: {
-          backgroundColor: "#fff"
-        },
-        tabBarLabelStyle:{
-          fontSize: 14,
-          fontWeight: "bold"
-        },
-        tabBarActiveTintColor: '#fff',
-        tabBarInactiveTintColor: "#ab887c",
-        tabBarActiveBackgroundColor: "#400303",
-      }}>
-        <Abas.Screen
-          name="Início"
-          component = { TelaInicial }
-          options={{
-            tabBarIcon: ({ color }) => (
-              <Entypo name="home" color={ color } size={ 20 } />
-            ),
-          }}
-        />
+function MyTabs() {
+	return (
+		<Tab.Navigator screenOptions={{
+			headerStyle:{
+				backgroundColor: '#400303'
+			  },
+			  headerTitleStyle: {
+				color: '#fff',
+				fontWeight: 'bold'
+			  },
+			  headerTitleAlign: 'center',
+	  
+			  tabBarStyle: {
+				backgroundColor: "#fff"
+			  },
+			  tabBarLabelStyle:{
+				fontSize: 14,
+				fontWeight: "bold"
+			  },
+			  tabBarActiveTintColor: '#fff',
+			  tabBarInactiveTintColor: "#ab887c",
+			  tabBarActiveBackgroundColor: "#400303",
+		}}>
+			<Tab.Screen name="Inicio" 
+			component={ TelaInicial } 
+			options={{
+				tabBarIcon: ({ color }) => (
+				  <Entypo name="home" color={ color } size={ 20 } />
+				),
+			}}/>
 
-        <Abas.Screen
-          name="Catálogo"
-          component = { TelaCatalogo }
-          options={{
-            tabBarIcon: ({ color }) => (
-              <FontAwesome5 name="wine-bottle"  color={ color } size={ 20 }/>
-            ),
-          }}
-        />
+			<Tab.Screen name="Catálogo" 
+			component={ TelaCatalogo } 
+			options={{
+				tabBarIcon: ({ color }) => (
+				  <FontAwesome5 name="wine-bottle"  color={ color } size={ 20 }/>
+				),
+			  }}
+			/>
 
-        <Abas.Screen
-          name="Contato"
-          component = { TelaContato }
-          options={{
-            tabBarIcon: ({ color }) => (
-              <AntDesign name="contacts" color={ color } size={ 20 }/>
-            ),
-          }}
-        />
-      </Abas.Navigator>
-    </NavigationContainer>
-  )
+			<Tab.Screen name="Contatos" 
+			component={ TelaContato } 
+			options={{
+				tabBarIcon: ({ color }) => (
+				  <AntDesign name="contacts" color={ color } size={ 20 }/>
+				),
+			  }}
+			/>
+		</Tab.Navigator>
+	);
+}
+
+
+
+export default function App() {  
+	return (    
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName="Tabs"        
+        	screenOptions={{
+				headerShown: false
+			}}
+      	>
+				<Stack.Screen name="Tabs" component={MyTabs} />
+				<Stack.Screen name="Detalhes" component={ Detalhes } />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
